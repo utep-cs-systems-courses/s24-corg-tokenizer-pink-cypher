@@ -2,14 +2,15 @@
 #define _TOKENIZER_
 
 
-/* Return true (non-zero) if c is a whitespace characer                                                                                                                                                     
+/* Return true (non-zero) if c is a whitespace characer                                                                                                                                                    
    ('\t' or ' ').                                                                                                                                                                                          
    Zero terminators are not printable (therefore false) */
 int space_char(char c){
   return c == '\t' || c == ' ';
 }
-/* Return true (non-zero) if c is a non-whitespace                                                                                                                                                          
-   character (not tab or space).                                                                                                                                                                            
+
+/* Return true (non-zero) if c is a non-whitespace                                                                                                                                                         
+   character (not tab or space).                                                                                                                                                                           
    Zero terminators are not printable (therefore false) */
 int non_space_char(char c){
   return c != '\0' && !space_char(c);
@@ -22,12 +23,10 @@ char *token_start(char *str){
   while (*str != '\0' && space_char(*str)) {
         str++;
   }
-    
-    if (*str == '\0') {
-        return NULL;
-    }
-    
-    return str;
+  if (*str == '\0') {
+    return NULL;
+  }
+  return str;
 }
 
 /* Returns a pointer terminator char following *token */
@@ -41,7 +40,6 @@ char *token_terminator(char *token){
 /* Counts the number of tokens in the string argument. */
 int count_tokens(char *str){
   int counter = 0;
-
   while (*str != '\0' && space_char(*str)) {
             str++;
   }
@@ -60,7 +58,21 @@ int count_tokens(char *str){
 
 /* Returns a fresly allocated new zero-terminated string
    containing <len> chars from <inStr> */
-char *copy_str(char *inStr, short len);
+char *copy_str(char *inStr, short len){
+   // allocates a place in memory with num of char from the original string + 1
+    char *string1 = (char *)malloc((len + 1);
+
+    // copies all the chars from inStr to string1
+    for (int i = 0; i < len; i++) {
+        string1[i] = inStr[i];
+    }
+
+    //  marks the end of the string
+    string1[len] = '\0';
+
+    return string1;
+
+}
 
 /* Returns a freshly allocated zero-terminated vector of freshly allocated
       space-separated tokens from zero-terminated str.
