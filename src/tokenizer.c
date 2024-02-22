@@ -31,11 +31,32 @@ char *token_start(char *str){
 }
 
 /* Returns a pointer terminator char following *token */
-char *token_terminator(char *token);
- return 
+char *token_terminator(char *token){
+    while (*token != '\0' && !space_char(*token)) {
+        token++;
+    }
+    return token;
+}
 
 /* Counts the number of tokens in the string argument. */
-int count_tokens(char *str);
+int count_tokens(char *str){
+  int counter = 0;
+
+  while (*str != '\0' && space_char(*str)) {
+            str++;
+  }
+
+  // Checks that it is not the end of string
+  if (*str != '\0') {
+     counter++; // Increment counter
+
+      // Move to the end of the current token
+      while (*str != '\0' && !space_char(*str)) {
+            str++;
+      }
+   }
+   return counter;
+}
 
 /* Returns a fresly allocated new zero-terminated string
    containing <len> chars from <inStr> */
