@@ -1,3 +1,4 @@
+
 #ifndef _TOKENIZER_
 #define _TOKENIZER_
 
@@ -85,10 +86,11 @@ char *copy_str(char *inStr, short len){
 */
 char **tokenize(char* str);
 
-/* Prints all tokens. */
-void print_tokens(char **tokens);
-
-/* Frees all tokens and the vector containing themx. */
+/* Prints all tokens and teminates when empty */
+void print_tokens(char **tokens){
+   for (int i = 0; tokens[i] != NULL; i++) {
+    printf("%s ", tokens[i]);
+    }
+}
+/* Frees all tokens and the vector containing them. */
 void free_tokens(char **tokens);
-
-~
