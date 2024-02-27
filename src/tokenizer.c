@@ -1,4 +1,4 @@
-
+#include <stdlib.h>
 #ifndef _TOKENIZER_
 #define _TOKENIZER_
 
@@ -84,7 +84,46 @@ char *copy_str(char *inStr, short len){
 		        tokens[2] = "string"
 			     tokens[3] = 0
 */
-char **tokenize(char* str);
+char **tokenize(char *str) {
+    // # of tokens
+    int num_tokens = count_tokens(str);
+
+    // Allocate memory for the array of tokens
+    char **tokens = (char **)malloc((num_tokens + 1) * sizeof(char *));
+
+    int i = 0;
+    // Iterates through the input string to extract tokens
+    while (*str != '\0') {
+        // Find the start and terminator of the current token
+        char *start = token_start(str);
+        char *terminator = token_terminator(start);
+        
+        // Allocate memory for the token string
+        tokens[i] = (char *)malloc(terminator - start + 1);
+        if (tokens[i] == NULL) {
+            // free previously allocated memory
+            for (int j = 0; j < i; j++) {
+                free(tokens[j]);
+            }
+            free(tokens);
+            return NULL;
+        }
+        
+        // Copy the token to the allocated memory
+        int j = 0;
+        while (start != terminator) {
+            tokens[i][j++] = *start++;
+        }
+        tokens[i][j] = '\0'; // Null = terminate the token
+        
+        str = terminator; //  next token
+        i++;
+    }
+    
+    tokens[num_tokens] = NULL; // Null = terminate the array of tokens
+    return tokens;
+}
+      
 
 /* Prints all tokens and teminates when empty */
 void print_tokens(char **tokens){
@@ -93,4 +132,11 @@ void print_tokens(char **tokens){
     }
 }
 /* Frees all tokens and the vector containing them. */
-void free_tokens(char **tokens);
+void free_tokens(char **tokens) {
+    // iterates array of tokens and frees them
+    for (int i = 0; tokens[i] != NULL; i++) {
+        free(tokens[i]);
+    }
+    //uses the free funtion that frees the array of tokens
+    free(tokens);
+}
