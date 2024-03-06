@@ -46,7 +46,7 @@ int count_tokens(char *str){
   }
 
   // Checks that it is not the end of string
-  if (*str != '\0') {
+  while (*str != '\0') {
      counter++; // Increment counter
 
       // Move to the end of the current token
