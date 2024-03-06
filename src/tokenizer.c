@@ -86,17 +86,17 @@ char **tokenize(char *str) {
     // # of tokens
     int num_tokens = count_tokens(str);
 
-    // Allocate memory for the array of tokens
+    // allocates memory for the array of tokens
     char **tokens = (char **)malloc((num_tokens + 1) * sizeof(char *));
 
     int i = 0;
-    // Iterates through the input string to extract tokens
+    // iterates through input string to extract tokens
     while (*str != '\0') {
-        // Find the start and terminator of the current token
+        // get start and terminator of current token
         char *start = token_start(str);
         char *terminator = token_terminator(start);
         
-        // Allocate memory for the token string
+        // allocates memory for token string
         tokens[i] = (char *)malloc(terminator - start + 1);
         if (tokens[i] == NULL) {
             // free previously allocated memory
@@ -107,12 +107,12 @@ char **tokenize(char *str) {
             return NULL;
         }
         
-        // Copy the token to the allocated memory
+        // copy token to allocated memory
         int j = 0;
         while (start != terminator) {
             tokens[i][j++] = *start++;
         }
-        tokens[i][j] = '\0'; // Null = terminate the token
+        tokens[i][j] = '\0'; // if Null = terminate the token
         
         str = terminator; //  next token
         i++;
