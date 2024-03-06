@@ -41,21 +41,19 @@ char *token_terminator(char *token){
 /* Counts the number of tokens in the string argument. */
 int count_tokens(char *str){
   int counter = 0;
-  while (*str != '\0' && space_char(*str)) {
-            str++;
+  char *token = token_start(str); // puts pointer in the first token
+  
+  while (token != NULL) {
+    counter++; 
+    
+    // moves to next token
+    token = token_terminator(token); // moves to end of current token
+    token = token_start(token); // puts pointer to next token
   }
-
-  // Checks that it is not the end of string
-  while (*str != '\0') {
-     counter++; // Increment counter
-
-      // Move to the end of the current token
-      while (*str != '\0' && !space_char(*str)) {
-            str++;
-      }
-   }
-   return counter;
+  
+  return counter;
 }
+
 
 /* Returns a fresly allocated new zero-terminated string
    containing <len> chars from <inStr> */
