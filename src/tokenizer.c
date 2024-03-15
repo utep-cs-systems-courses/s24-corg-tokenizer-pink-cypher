@@ -1,5 +1,5 @@
+#include <stdio.h>
 #include <stdlib.h>
-#ifndef _TOKENIZER_
 #define _TOKENIZER_
 
 
@@ -59,7 +59,7 @@ int count_tokens(char *str){
    containing <len> chars from <inStr> */
 char *copy_str(char *inStr, short len){
    // allocates a place in memory with num of char from the original string + 1
-    char *string1 = (char *)malloc((len + 1);
+  char *string1 = (char *)malloc((len + 1));
 
     // copies all the chars from inStr to string1
     for (int i = 0; i < len; i++) {
