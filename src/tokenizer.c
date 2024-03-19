@@ -59,7 +59,7 @@ int count_tokens(char *str){
    containing <len> chars from <inStr> */
 char *copy_str(char *inStr, short len){
    // allocates a place in memory with num of char from the original string + 1
-  char *string1 = (char *)malloc((len + 1));
+  char *string1 = (char *)malloc((len + 1)* sizeof(char *));
 
     // copies all the chars from inStr to string1
     for (int i = 0; i < len; i++) {
@@ -89,17 +89,17 @@ char **tokenize(char *str) {
     // allocates memory for the array of tokens
     char **tokens = (char **)malloc((num_tokens + 1) * sizeof(char *));
 
-    int i = 0;
+    char *stop;
+    char* start = token_start(str);
+    
     // iterates through input string to extract tokens
-    while (*str != '\0') {
+    for (int i = 0; i < num_tokens; i++) {
         // get start and terminator of current token
-        char *start = token_start(str);
-        char *terminator = token_terminator(start);
-        
+        stop = token_terminator(start);
         // allocates memory for token string
-        tokens[i] = (char *)malloc(terminator - start);
-	
-        str = terminator; //  next token
+        *tokens[i] = (char *)malloc(stop - start);
+
+        str = stop; //  next token
         i++;
     }
     
