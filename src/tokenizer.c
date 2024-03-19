@@ -97,23 +97,8 @@ char **tokenize(char *str) {
         char *terminator = token_terminator(start);
         
         // allocates memory for token string
-        tokens[i] = (char *)malloc(terminator - start + 1);
-        if (tokens[i] == NULL) {
-            // free previously allocated memory
-            for (int j = 0; j < i; j++) {
-                free(tokens[j]);
-            }
-            free(tokens);
-            return NULL;
-        }
-        
-        // copy token to allocated memory
-        int j = 0;
-        while (start != terminator) {
-            tokens[i][j++] = *start++;
-        }
-        tokens[i][j] = '\0'; // if Null = terminate the token
-        
+        tokens[i] = (char *)malloc(terminator - start);
+	
         str = terminator; //  next token
         i++;
     }
