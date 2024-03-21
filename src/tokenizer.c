@@ -97,13 +97,13 @@ char **tokenize(char *str) {
         // get start and terminator of current token
         stop = token_terminator(start);
         // allocates memory for token string
-        *tokens[i] = (char *)malloc(stop - start);
+        *(tokens+i) = copy_str(start, (stop - start));
 
-        str = stop; //  next token
-        i++;
+	start = token_start(stop);
+
     }
     
-    tokens[num_tokens] = NULL; // Null = terminate the array of tokens
+    *(tokens+num_tokens) = NULL; // Null = terminate the array of tokens
     return tokens;
 }
       

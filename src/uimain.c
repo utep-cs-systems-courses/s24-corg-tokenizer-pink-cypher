@@ -9,17 +9,15 @@ int main() {
         fflush(stdout);/* stdout only flushes automatically on \n */
 	int c = getchar();
 	getchar();
-        
+	
 	switch(c){
 	  case 's':
 	    fputs("Please enter your string: ", stdout);
 	    fflush(stdout);
-	    char sentence[100];// Assuming maximum sentence length is 100 characters                                                                                                                       
-            getchar();
-            fgets(sentence, sizeof(sentence), stdin); // Read user input                                                                                                                                   
-	    printf("You inputed: %s", sentence);
-            char **tokens = tokenize(sentence); // Tokenize the sentence                                                                                                                                   
-            print_tokens(tokens); // Print the tokens   
+	    char sentence[100];// Assuming maximum sentence length is 100 characters                                                                                                                           
+            fgets(sentence, sizeof(sentence), stdin); // Read user input    
+	    char **tokens = tokenize(sentence); // Tokenize the sentence     
+	    print_tokens(tokens); // Print the tokens   
 	    break;
 	    
 	  case 'h':
