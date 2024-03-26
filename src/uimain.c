@@ -10,7 +10,7 @@ int main() {
     puts("Welcome to Isabella's Tokenizer!");
 
     while (1) { // Infinite while loop
-        fputs("Please input 's' to enter a sentence, 'h' to see your history or 'q' to quit\n> ", stdout);
+        fputs("Please input 's' to enter a sentence, 'h' to see your full history, 'i' to see a specific history, or 'q' to quit\n> ", stdout);
         fflush(stdout);/* stdout only flushes automatically on \n */
 	int c = getchar();
 	getchar();
@@ -32,6 +32,14 @@ int main() {
 	    print_history(history);
 	   break; //return history
 
+	case 'i':
+	  fputs("Please enter the id of the history you would like to see: ", stdout);
+	  fflush(stdout);
+	  int id_value;
+	  scanf("%d", &id_value);
+	  printf("History:%d %s\n", id_value, get_history(history, id_value));
+	  break;
+	  
 	case 'q':
 	   puts("Bye!");
 	   free_history(history);
