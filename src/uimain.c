@@ -1,5 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "tokenizer.h"
+#include "history.h"
 
 int main() {
     List *history = init_history();
@@ -20,7 +24,7 @@ int main() {
 	    char **tokens = tokenize(sentence); // Tokenize the sentence     
 	    print_tokens(tokens); // Print the tokens
 	    free_tokens(tokens);
-	    add_history(history, input);
+	    add_history(history, sentence);
 	    break;
 	    
 	  case 'h':
