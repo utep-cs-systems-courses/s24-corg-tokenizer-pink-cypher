@@ -24,7 +24,7 @@ void add_history(List *list, char *str){
   
   if (head == NULL) {
     list->root = newNode;
-    newNode -> counter = 0;  
+    newNode -> id = 0;  
   }
   
   else {
@@ -32,7 +32,7 @@ void add_history(List *list, char *str){
       head = head -> next;
     }
     head -> next = newNode;
-    newNode-> counter = head -> counter + 1;
+    newNode-> id  = head -> id + 1;
   }
 
   int length = 0;

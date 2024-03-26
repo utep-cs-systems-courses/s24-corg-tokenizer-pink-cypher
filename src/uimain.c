@@ -2,6 +2,7 @@
 #include "tokenizer.h"
 
 int main() {
+    List *history = init_history();
     puts("Welcome to Isabella's Tokenizer!");
 
     while (1) { // Infinite while loop
@@ -17,16 +18,19 @@ int main() {
 	    char sentence[100];// Assuming maximum sentence length is 100 characters                                                                                                                           
             fgets(sentence, sizeof(sentence), stdin); // Read user input    
 	    char **tokens = tokenize(sentence); // Tokenize the sentence     
-	    print_tokens(tokens); // Print the tokens   
+	    print_tokens(tokens); // Print the tokens
+	    free_tokens(tokens);
+	    add_history(history, input);
 	    break;
 	    
 	  case 'h':
 	   // Given the user answer, as long as it is one of the options, it will call the function
-	   puts("Functionality for viewing history will be implemented here.");
+	    print_history(history);
 	   break; //return history
 
 	case 'q':
 	   puts("Bye!");
+	   free_history(history);
            break;                /* terminate */
 	}
 	if (c == 'q'){
